@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { View, TextInput,Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TextInput,Text, TouchableOpacity,  ScrollView, StyleSheet } from 'react-native';
 import TodoItem from './TodoItem';
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      padding: 20,
-      backgroundColor: '#f2f2f2',
+      padding: 10,
+      // backgroundColor: '#f2f2f2',
     },
     inputContainer: {
       flexDirection: 'row',
@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
       marginTop: 15,
       paddingHorizontal: 10,
       paddingVertical: 5,
+      marginVertical: 15,
       backgroundColor: '#fff',
       borderRadius: 8,
       borderWidth: 1,
@@ -68,14 +69,6 @@ export default function TodoList() {
   // Render TodoList Component
   return (
     <View style={styles.container}>
-    {tasks.map(task => (
-      <TodoItem
-        key={task.id}
-        task={task}
-        deleteTask={deleteTask}
-        toggleCompleted={toggleCompleted}
-      />
-    ))}
     <View style={styles.inputContainer}>
       <TextInput
         style={styles.textInput}
@@ -88,6 +81,16 @@ export default function TodoList() {
         <Text style={styles.addButtonText}>Add</Text>
       </TouchableOpacity>
     </View>
+    <ScrollView>
+    {tasks.map(task => (
+      <TodoItem
+      key={task.id}
+      task={task}
+      deleteTask={deleteTask}
+      toggleCompleted={toggleCompleted}
+      />
+    ))}
+    </ScrollView>
   </View>
   
   );
