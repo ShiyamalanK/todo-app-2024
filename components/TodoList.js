@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput,Text, TouchableOpacity,  ScrollView, StyleSheet } from 'react-native';
 import TodoItem from './TodoItem';
+import TabViewComp from './TabView';
 
 const styles = StyleSheet.create({
     container: {
@@ -42,6 +43,10 @@ const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 16,
     },
+    tabContainer:{
+      flex: 1,
+      padding: 10,
+    }
   });
   
 
@@ -66,32 +71,66 @@ export default function TodoList() {
   function toggleCompleted(id) {
     setTasks(tasks.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)));
   }
+  const CustomTabContent1 = () => (
+    <View style={styles.tabContainer}>
+      <ScrollView>
+
+      {tasks.filter(task => task.completed != true).map( task =>
+        <TodoItem 
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          toggleCompleted={toggleCompleted}
+        />
+      )}
+      </ScrollView>
+    </View>
+  );
+  
+  const CustomTabContent2 = () => (
+    <View style={styles.tabContainer}>
+      <ScrollView>
+        {tasks.filter(task => task.completed == true).map( task =>
+        <TodoItem 
+          key={task.id}
+          task={task}
+          deleteTask={deleteTask}
+          toggleCompleted={toggleCompleted}
+        />
+      )}
+      </ScrollView>
+    </View>
+  );
   // Render TodoList Component
   return (
     <View style={styles.container}>
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        value={text}
-        onChangeText={setText}
-        placeholder="New Task"
-        placeholderTextColor="#999"
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          value={text}
+          onChangeText={setText}
+          placeholder="New Task"
+          placeholderTextColor="#999"
+        />
+        <TouchableOpacity style={styles.addButton} onPress={addTask}>
+          <Text style={styles.addButtonText}>Add</Text>
+        </TouchableOpacity>
+      </View>
+      <TabViewComp 
+        tabTitles={['Tasks', 'Completed']}
+        tabContent={[CustomTabContent1, CustomTabContent2]}
       />
-      <TouchableOpacity style={styles.addButton} onPress={addTask}>
-        <Text style={styles.addButtonText}>Add</Text>
-      </TouchableOpacity>
+      {/* <ScrollView>
+      {tasks.map(task => (
+        <TodoItem
+        key={task.id}
+        task={task}
+        deleteTask={deleteTask}
+        toggleCompleted={toggleCompleted}
+        />
+      ))}
+      </ScrollView> */}
     </View>
-    <ScrollView>
-    {tasks.map(task => (
-      <TodoItem
-      key={task.id}
-      task={task}
-      deleteTask={deleteTask}
-      toggleCompleted={toggleCompleted}
-      />
-    ))}
-    </ScrollView>
-  </View>
   
   );
 }

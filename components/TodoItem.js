@@ -10,15 +10,16 @@ const styles = StyleSheet.create({
       paddingVertical: 10,
       paddingHorizontal: 15,
       marginVertical: 5,
-      backgroundColor: '#f9f9f9',
+      backgroundColor: '#044',
       borderRadius: 8,
-      borderWidth: 1,
+      borderWidth: 0.3,
       borderColor: '#ddd',
       shadowColor: '#000',
       shadowOffset: { width: 0, height: 1 },
       shadowOpacity: 0.1,
       shadowRadius: 2,
       elevation: 2,
+      maxHeight: 75
     },
     checkboxContainer: {
       marginRight: 10,
@@ -26,21 +27,25 @@ const styles = StyleSheet.create({
     todoItemText: {
       flex: 1,
       fontSize: 16,
-      color: '#333',
+      color: '#eee',
     },
     completed: {
       textDecorationLine: 'line-through',
       color: '#999',
     },
     deleteButton: {
-      backgroundColor: '#FF6347',
+      backgroundColor: '#f55',
       paddingVertical: 6,
       paddingHorizontal: 10,
       borderRadius: 5,
+      height: '100%',
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     deleteButtonText: {
       color: '#fff',
       fontSize: 14,
+      fontWeight: 'bold'
     },
   });
   
@@ -49,7 +54,7 @@ export default function TodoItem({ task, deleteTask, toggleCompleted }) {
     return (
         <View style={styles.todoItem}>
         <View style={styles.checkboxContainer}>
-          <Switch
+          <Switch 
             value={task.completed}
             onValueChange={() => toggleCompleted(task.id)}
           />
