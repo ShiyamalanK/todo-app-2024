@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, CheckBox, Button, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Button, Switch, TouchableOpacity, StyleSheet } from 'react-native';
 
 
 const styles = StyleSheet.create({
@@ -49,10 +49,9 @@ export default function TodoItem({ task, deleteTask, toggleCompleted }) {
     return (
         <View style={styles.todoItem}>
         <View style={styles.checkboxContainer}>
-          <CheckBox
+          <Switch
             value={task.completed}
             onValueChange={() => toggleCompleted(task.id)}
-            tintColors={{ true: '#4CAF50', false: '#ccc' }} // Green when checked
           />
         </View>
         <Text style={[styles.todoItemText, task.completed && styles.completed]}>
