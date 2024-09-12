@@ -16,6 +16,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 5,
       marginVertical: 15,
+      marginHorizontal: 10,
       backgroundColor: '#fff',
       borderRadius: 8,
       borderWidth: 1,
@@ -38,10 +39,14 @@ const styles = StyleSheet.create({
       paddingVertical: 10,
       paddingHorizontal: 15,
       borderRadius: 8,
+      width: 70,
+      alignItems: 'center',
+      justifyContent: 'center'
     },
     addButtonText: {
       color: '#fff',
-      fontSize: 16,
+      fontSize: 15,
+      fontWeight: 'bold'
     },
     tabContainer:{
       flex: 1,
